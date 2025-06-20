@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kishan's Portfolio | Programming & Gaming</title>
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #00b4d8;
+            --dark: #0d1117;
+            --light: #f0f6fc;
+            --accent: #00ff9d;
+            --code-bg: #161b22;
+            --card-bg: #21262d;
+            --terminal-green: #4ade80;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(13, 17, 23, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-bracket {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 60px;
+            background: linear-gradient(to bottom right, rgba(13, 17, 23, 0.9), rgba(13, 17, 23, 0.7)), url('/api/placeholder/1920/1080') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 180, 216, 0.03) 0px,
+                rgba(0, 180, 216, 0.03) 1px,
+                transparent 1px,
+                transparent 20px
+            );
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 60px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+        
+        .terminal {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .terminal-header {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .terminal-dot-red {
+            background-color: #ff5f56;
+        }
+        
+        .terminal-dot-yellow {
+            background-color: #ffbd2e;
+        }
+        
+        .terminal-dot-green {
+            background-color: #27c93f;
+        }
+        
+        .terminal-text {
+            color: var(--terminal-green);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: var(--terminal-green);
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+            margin-left: 5px;
+        }
+        
+        @keyframes blink {
+            from, to {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        
+        .cta-btn:hover {
+            background-color: #7b24d4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        .cta-btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .cta-btn-secondary:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:before {
+            content: '</>';
+            font-size: 18px;
+            color: var(--secondary);
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        .skill-tag {
+            background-color: var(--card-bg);
+            color: var(--secondary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+        
+        .skill-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        .about-image:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(0, 180, 216, 0.1));
+            z-index: 1;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(138, 43, 226, 0.3);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-details {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+        
+        .project-description {
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: rgba(240, 246, 252, 0.8);
+            flex: 1;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .project-tag {
+            background-color: rgba(138, 43, 226, 0.15);
+            color: var(--secondary);
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-link {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s ease;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Gaming Section */
+        .gaming-section {
+            background-color: var(--code-bg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gaming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-image {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .game-card:hover .game-image img {
+            transform: scale(1.05);
+        }
+        
+        .game-details {
+            padding: 15px;
+        }
+        
+        .game-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+        
+        .game-platform {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .game-description {
+            font-size: 14px;
+            color: rgba(240, 246, 252, 0.8);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--secondary);
+        }
+        
+        .contact-text {
+            font-size: 16px;
+        }
+        
+        .contact-form {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: var(--light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: rgba(13, 17, 23, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 5px;
+            font-size: 16px;
+            color: var(--light);
+            font-family: 'Consolas', 'Courier New', monospace;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Consolas', 'Courier New', monospace;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #7b24d4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--code-bg);
+            padding: 50px 0 30px;
+            text-align: center;
+            border-top: 1px solid rgba(138, 43, 226, 0.2);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            color: var(--light);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            color: rgba(240, 246, 252, 0.7);
+        }
+        
+        .animated-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-bracket">&lt;</span>  Kishan's Portfolio<span class="logo-bracket">/&gt;</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#gaming">Gaming</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, I'm <span style="color: var(--accent);">Kishan Bharghav V</span></h1>
+                <h2 class="hero-subtitle">Aspiring Data Analyst & Game Enthusiast</h2>
+                
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dot terminal-dot-red"></div>
+                        <div class="terminal-dot terminal-dot-yellow"></div>
+                        <div class="terminal-dot terminal-dot-green"></div>
+                    </div>
+                    <div class="terminal-text">
+                        &gt; const skills = ['JavaScript', 'Python', 'c++', 'Unity3D', 'C#'];<br>
+                        &gt; const interests = ['Game Development', 'Web Apps', 'AI'];<br>
+                        &gt; console.log("Let's build something amazing!");<br>
+                        "Let's build something amazing!"<span class="cursor"></span>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="#projects" class="cta-btn">View My Work</a>
+                    <a href="#contact" class="cta-btn cta-btn-secondary">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div>
+                    <p class="about-text">
+                        I’m a third-year B.Tech Computer Science Engineering student at SRM Institute of Science and Technology, Ramapuram, specializing in Big Data Analytics. I'm a passionate and curious rookie programmer, always eager to learn and explore new programming languages and technologies.
+                    </p>
+                    
+                    <p class="about-text">
+                        I’m proficient in C++, Python, and HTML, and I enjoy building small projects to strengthen my problem-solving and development skills. My interests lie strongly in Artificial Intelligence and gaming, and I’m fascinated by how AI is shaping the future of interactive experiences.
+                    </p>
+                    
+                    <p class="about-text">
+                        Currently, I’m focused on improving my coding skills, exploring web technologies, and diving deeper into the world of AI and data-driven systems.
+                    </p>
+                    
+                    <div class="skills">
+                        <div class="skill-tag">
+                            <img src="imgs/js.jpg" alt="JavaScript" class="skill-icon"> JavaScript
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/python.jpg" alt="Python" class="skill-icon"> Python
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/react.jpg" alt="React" class="skill-icon"> React
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/nodejs.jpg" alt="Node.js" class="skill-icon"> Node.js
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/unity3d.jpg" alt="Unity3D" class="skill-icon"> Unity3D
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/c.jpg" alt="C" class="skill-icon"> C
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/unreal.jpg" alt="Unreal Engine" class="skill-icon"> Unreal Engine
+                        </div>
+                        <div class="skill-tag">
+                            <img src="imgs/c++.jpg" alt="C++" class="skill-icon"> C++
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="imgs/devport.jpg" alt="Developer Portrait">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="imgs/rain.png" alt="Project 1">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">Simple Rain Predictor</h3>
+                        <p class="project-description">
+                            Simple rain predicitng python web app using Openweather API This is a project made in flask module of python.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">css</span>
+                            <span class="project-tag">html</span>
+                            <span class="project-tag">API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kishanbharghav/Simple-rain-predicition"target="_blank" class="project-link">
+                                <img src="imgs/github.jpg" alt="GitHub" style="width: 16px; height: 16px;"> View code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="imgs/passgen.png" alt="Project 2">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">Password generator and Strength checker</h3>
+                        <p class="project-description">
+                            This is a simple password generator and strength checker project with html,css, and js. The project is also connected with a swlite database to store the generated passwords in the database.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">java</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">js</span>
+                            <span class="project-tag">html</span>
+                            <span class="project-tag">css</span>
+                        </div>
+                        <div class="project-links">
+
+                            <a href="https://github.com/kishanbharghav/Password-Generator-and-Strength-checker"target="_blank" class="project-link">
+                                <img src="imgs/github.jpg" alt="GitHub" style="width: 16px; height: 16px;"> View code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="imgs/imdb.png" alt="Project 3">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">IMDB Movie Analysis in Python</h3>
+                        <p class="project-description">
+                            A simple movie analysis using python and csv. It efficiently describes the data we demand from the csv and shows it as graphs and tables.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Google collab</span>
+                            <span class="project-tag">Data Visualization</span>
+                        </div>
+                         <div class="project-links">
+
+                            <a href="https://github.com/kishanbharghav/IMDB-Movie-Analysis-in-Python"target="_blank" class="project-link">
+                                <img src="imgs/github.jpg" alt="GitHub" style="width: 16px; height: 16px;"> View code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="imgs/alg.jpg" alt="Project 4">
+                    </div>
+                    <div class="project-details">
+                        <h3 class="project-title">Algovisual(Working on it)</h3>
+                        <p class="project-description">
+                            An interactive tool that visually demonstrates how algorithms work step-by-step through engaging animations.
+.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">C++</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="" class="project-link">
+                                <img src="/api/placeholder/16/16" alt="Demo" style="width: 16px; height: 16px;"> Coming soon
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gaming" class="section gaming-section">
+        <div class="container">
+            <h2 class="section-title">Gaming Showcase</h2>
+            <p style="margin-bottom: 40px;">Games that inspire my work and development philosophy.</p>
+            
+            <div class="gaming-grid">
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="imgs/witcher3.jpg" alt="Game 1">
+                    </div>
+                    <div class="game-details">
+                        <h3 class="game-title">The Witcher 3</h3>
+                        <div class="game-platform">PC / PlayStation / Xbox</div>
+                        <p class="game-description">Inspiring quest design and storytelling techniques.</p>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="imgs/hollowknight.jpg" alt="Game 2">
+                    </div>
+                    <div class="game-details">
+                        <h3 class="game-title">Hollow Knight</h3>
+                        <div class="game-platform">PC / Switch</div>
+                        <p class="game-description">Masterful level design and atmosphere building.</p>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="imgs/portal2.jpg" alt="Game 3">
+                    </div>
+                    <div class="game-details">
+                        <h3 class="game-title">Portal 2</h3>
+                        <div class="game-platform">PC / PlayStation / Xbox</div>
+                        <p class="game-description">A mind-bending puzzle-platformer in a darkly humorous sci-fi world.</p>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="imgs/stardewvalley.jpg" alt="Game 4">
+                    </div>
+                    <div class="game-details">
+                        <h3 class="game-title">Stardew Valley</h3>
+                        <div class="game-platform">PC / PlayStation / Xbox</div>
+                        <p class="game-description">A relaxing farming sim where you build a life in a charming rural town.</p>
+                    </div>
+                </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <img src="imgs/gmail.jpg" alt="Email Icon" class="contact-icon">
+                        <div class="contact-text">Email: kishanbharghav@gmail.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <img src="imgs/whatsapp.jpg" alt="Phone Icon" class="contact-icon">
+                        <div class="contact-text">Phone/Whatsapp: +91 7904433070</div>
+                    </div>
+                    <div class="contact-item">
+                        <img src="imgs/github.jpg" alt="GitHub Icon" class="contact-icon">
+                        <div class="contact-text">
+                            GitHub: <a href="https://github.com/kishanbharghav" target="_blank" style="color: var(--secondary); text-decoration: none;">@kishanbharghav</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <img src="imgs/linkedin.jpg" alt="LinkedIn Icon" class="contact-icon">
+                        <div class="contact-text">
+                            LinkedIn: <a href="https://www.linkedin.com/in/kishan-bharghav-v-615430291/" target="_blank" style="color: var(--secondary); text-decoration: none;">linkedin.com/in/kishanbharghav</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
